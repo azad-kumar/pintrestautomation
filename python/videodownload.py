@@ -1,13 +1,20 @@
+
+# required packages
 import driver
 from time import sleep
 from selenium.webdriver.common.by import By
+from bs4 import BeautifulSoup
 
-class instagram:
+
+
+
+class video_download_link:
     # declaring and initilizing variable to be used repeatedly
     site_url = 'https://saveinsta.app/en/instagram-reels-video-download'
     input_field_x_path = '/html/body/div[1]/div[1]/div/div/form/div/input'
     load_video_btn = '/html/body/div[1]/div[1]/div/div/form/div/div/button'
     ads_btn = '/html/body/div[2]/div/div[2]/button'
+    links = []
 
     def __init__(self,reels_url):
         self.reels_url = reels_url
@@ -34,8 +41,17 @@ class instagram:
         close_ad_btn = self.Driver.find_element(By.XPATH,self.ads_btn)
         close_ad_btn.click()
 
+    def fetch_download_link(self):
+        # Find all elements with class name 'download-items__btn'
+        elements = self.Driver.find_elements(By.CLASS_NAME, "download-items__btn")
 
-    def run_download(self):
+        # Print the links inside the anchor tags for each element
+        for element in elements:
+            link = element.find_element(By.TAG_NAME, 'a').get_attribute('href')
+            self.links.append(link)
+
+
+    def get_video_download_links(self):
         self.input_url()
         sleep(3)
         self.load_video()
@@ -44,13 +60,13 @@ class instagram:
         print('closing ads')
         self.close_ad()
         print('ads closed successfully')
+        self.fetch_download_link()
         sleep(20)
         self.Driver.quit()
         print('driver quit succeessfully')
+        return self.links
 
         
 
 if __name__ == '__main__':
     reels_url = 'https://www.instagram.com/reel/CqS3YvEIDTO/?utm_source=ig_web_copy_link'
-    main_obj = instagram(reels_url)
-    main_obj.run_download()
