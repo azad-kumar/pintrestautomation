@@ -22,6 +22,16 @@ def get_video_dir():
     video_dir = os.path.join(parent_dir, const.VIDEO_DIR)
     return video_dir
 
+def get_cookies_dir():
+    parent_dir = os.path.dirname(os.getcwd())
+    cookies_dir = os.path.join(parent_dir, const.COOKIES_DIR)
+    return cookies_dir
+
+
+def get_cookies_file():
+    cookies_dir = get_cookies_dir()
+    return os.path.join(cookies_dir,const.COOKIES_FILE)
+
 
 def convert_to_relative_path(path):
     dir_path = os.path.dirname(path)

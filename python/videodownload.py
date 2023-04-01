@@ -74,11 +74,8 @@ class video_download_link:
         return self.links
 
 
-
-if __name__ == '__main__':
-    reels_url = 'https://www.instagram.com/reel/CqS3YvEIDTO/?utm_source=ig_web_copy_link'
-    driver_obj = video_download_link(reels_url)
-    links = driver_obj.get_video_download_links()
-    # links = ['https://download.i-7-cdn.xyz/ig/1680248789/3d0be84d078fa4a8924db0d193b40958dc3020f803f1659832da7e9806c5a47e?file=aHR0cHM6Ly9zY29udGVudC5jZG5pbnN0YWdyYW0uY29tL3YvdDY2LjMwMTAwLTE2LzMxODE4MDEwN183NDU0NjY5MDcwNTUyNDJfNjU1NzE1NTk1ODc2MTcwMTA0OV9uLm1wND9fbmNfaHQ9c2NvbnRlbnQuY2RuaW5zdGFncmFtLmNvbSZfbmNfY2F0PTEwNiZfbmNfb2hjPWJTWDVQMTZVSnR3QVg5bHBVaE0mZWRtPUFQczE3Q1VCQUFBQSZjY2I9Ny01Jm9oPTAwX0FmQ25ZcnRiRmZNVXdKSWtVNThPbGNNdlVBTTM2VjNfYnRObjlzU2dVNlF2UGcmb2U9NjQyN0VBOUQmX25jX3NpZD05NzhjYjkmbmFtZT1TYXZlSW5zdGEuQXBwIC0gMzA2Nzc1Nzg4ODU1MzM2NjczNC5tcDQ']
-    # download_obj = download_video(links)
-    # download_obj.start_download()
+# test code
+# if __name__ == '__main__':
+#     reels_url = 'https://www.instagram.com/reel/CqS3YvEIDTO/?utm_source=ig_web_copy_link'
+#     driver_obj = video_download_link(reels_url)
+#     links = driver_obj.get_video_download_links()
