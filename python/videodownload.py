@@ -3,6 +3,7 @@
 import driver_ as driver
 from time import sleep
 from selenium.webdriver.common.by import By
+import files
 
 
 class video_download_link:
@@ -12,7 +13,7 @@ class video_download_link:
     load_video_btn = '/html/body/div[1]/div[1]/div/div/form/div/div/button'
     ads_btn = '/html/body/div[2]/div/div[2]/button'
     links = []
-
+    
     def __init__(self,reels_url):
         self.reels_url = reels_url
         self.Driver = self.load_site()
@@ -20,6 +21,8 @@ class video_download_link:
 
     def load_site(self):
         driver_obj  = driver.driver_class()
+        download_loc = files.get_video_dir()
+        driver_obj.change_download_loc(download_dir = download_loc)
         Driver = driver_obj.load_driver()
         # navigatet to the instagram reels downloder website
         Driver.get(self.site_url)
@@ -53,7 +56,7 @@ class video_download_link:
             self.Driver.get(i)
 
 
-    def get_video_download_links(self):
+    def download_video(self):
         self.input_url()
         sleep(3)
         self.load_video()
@@ -65,17 +68,19 @@ class video_download_link:
         self.fetch_download_link()
         sleep(20)
         self.start_download()
-        sleep(20)
+        # sleep(20)
         print('driver ready to quit')
+        print('sleepig for 300 seconds')
         sleep(30)
+        print('sleping complete')
         self.Driver.quit()
         print('driver quit succeessfully')
         print('video download complete')
-        return self.links
+        return True
 
 
 # test code
 # if __name__ == '__main__':
 #     reels_url = 'https://www.instagram.com/reel/CqS3YvEIDTO/?utm_source=ig_web_copy_link'
 #     driver_obj = video_download_link(reels_url)
-#     links = driver_obj.get_video_download_links()
+#     driver_obj.download_video()

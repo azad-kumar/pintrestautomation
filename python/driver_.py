@@ -4,6 +4,8 @@ import files
 
 
 class driver_class:
+    download_dir = None
+    cookies = None
 
     chrome_options = Options()
 
@@ -11,19 +13,22 @@ class driver_class:
         pass
 
     def load_driver(self): 
-        self.add_options()
         driver_path = files.get_driver_path()
         Driver = webdriver.Chrome(executable_path=driver_path , options=self.chrome_options)
         return Driver
 
+    
+    def add_features(self):
+        pass
 
-    def add_options(self):
-        self.change_download_loc()
-        return True
 
-
-    def change_download_loc(self):
-        download_dir  = files.get_video_dir()
+    def change_download_loc(self, download_dir):
+        self.download_dir = download_dir
         self.chrome_options.add_experimental_option('prefs', {'download.default_directory': download_dir})
         return True
+    
+    def add_cookies(self,cookies):
+        self.cookies = cookies 
+        for cookie in cookies:
+            self.driver.add_cookie(cookie)
 
