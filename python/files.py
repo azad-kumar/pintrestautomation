@@ -18,8 +18,9 @@ def get_driver_path():
     return os.path.join(get_driver_dir(),const.DRIVER_NAME)
 
 def get_video_dir():
-    cwd = os.getcwd()
-    print(cwd)
+    parent_dir = os.path.dirname(os.getcwd())
+    video_dir = os.path.join(parent_dir, const.VIDEO_DIR)
+    return video_dir
 
 
 def convert_to_relative_path(path):

@@ -1,6 +1,6 @@
 
 # required packages
-import driver
+from driver import driver_class
 from time import sleep
 from selenium.webdriver.common.by import By
 import requests
@@ -24,7 +24,8 @@ class video_download_link:
         
 
     def load_site(self):
-        Driver = driver.load_driver()
+        driver_obj  = driver_class()
+        Driver = driver_obj.load_driver()
         # navigatet to the instagram reels downloder website
         Driver.get(self.site_url)
         return Driver
@@ -52,6 +53,10 @@ class video_download_link:
             link = element.find_element(By.TAG_NAME, 'a').get_attribute('href')
             self.links.append(link)
 
+    def start_download(self):
+        for i in self.links:
+            self.Driver.get(i)
+
 
     def get_video_download_links(self):
         self.input_url()
@@ -64,41 +69,20 @@ class video_download_link:
         print('ads closed successfully')
         self.fetch_download_link()
         sleep(20)
+        self.start_download()
+        sleep(20)
+        print('driver ready to quit')
+        sleep(10)
         self.Driver.quit()
         print('driver quit succeessfully')
         print(self.links)
         return self.links
 
-        
-class download_video:
-
-    def __init__(self,links):
-        self.links = links
-
-    def get_download_path(self):
-        video_dir = files.get_video_dir()
-        file_name = files.give_next_file(video_dir)
-        file_name = file_name + ".mp4"
-        return os.path.join(video_dir,file_name)
-    
-    def download_video(self,url,file_path):
-        response = requests.get(url)
-        response = response.content
-        with open(file_path , 'wb') as f:
-            f.write(response)
-        return True
-
-
-    def start_download(self):
-        for i in self.links:
-            path = self.get_download_path()
-            self.download_video(i,path)
-    
 
 if __name__ == '__main__':
-    # reels_url = 'https://www.instagram.com/reel/CqS3YvEIDTO/?utm_source=ig_web_copy_link'
-    # driver_obj = video_download_link(reels_url)
-    # links = driver_obj.get_video_download_links()
-    links = ['https://download.i-7-cdn.xyz/ig/1680248789/3d0be84d078fa4a8924db0d193b40958dc3020f803f1659832da7e9806c5a47e?file=aHR0cHM6Ly9zY29udGVudC5jZG5pbnN0YWdyYW0uY29tL3YvdDY2LjMwMTAwLTE2LzMxODE4MDEwN183NDU0NjY5MDcwNTUyNDJfNjU1NzE1NTk1ODc2MTcwMTA0OV9uLm1wND9fbmNfaHQ9c2NvbnRlbnQuY2RuaW5zdGFncmFtLmNvbSZfbmNfY2F0PTEwNiZfbmNfb2hjPWJTWDVQMTZVSnR3QVg5bHBVaE0mZWRtPUFQczE3Q1VCQUFBQSZjY2I9Ny01Jm9oPTAwX0FmQ25ZcnRiRmZNVXdKSWtVNThPbGNNdlVBTTM2VjNfYnRObjlzU2dVNlF2UGcmb2U9NjQyN0VBOUQmX25jX3NpZD05NzhjYjkmbmFtZT1TYXZlSW5zdGEuQXBwIC0gMzA2Nzc1Nzg4ODU1MzM2NjczNC5tcDQ']
-    download_obj = download_video(links)
-    download_obj.start_download()
+    reels_url = 'https://www.instagram.com/reel/CqS3YvEIDTO/?utm_source=ig_web_copy_link'
+    driver_obj = video_download_link(reels_url)
+    links = driver_obj.get_video_download_links()
+    # links = ['https://download.i-7-cdn.xyz/ig/1680248789/3d0be84d078fa4a8924db0d193b40958dc3020f803f1659832da7e9806c5a47e?file=aHR0cHM6Ly9zY29udGVudC5jZG5pbnN0YWdyYW0uY29tL3YvdDY2LjMwMTAwLTE2LzMxODE4MDEwN183NDU0NjY5MDcwNTUyNDJfNjU1NzE1NTk1ODc2MTcwMTA0OV9uLm1wND9fbmNfaHQ9c2NvbnRlbnQuY2RuaW5zdGFncmFtLmNvbSZfbmNfY2F0PTEwNiZfbmNfb2hjPWJTWDVQMTZVSnR3QVg5bHBVaE0mZWRtPUFQczE3Q1VCQUFBQSZjY2I9Ny01Jm9oPTAwX0FmQ25ZcnRiRmZNVXdKSWtVNThPbGNNdlVBTTM2VjNfYnRObjlzU2dVNlF2UGcmb2U9NjQyN0VBOUQmX25jX3NpZD05NzhjYjkmbmFtZT1TYXZlSW5zdGEuQXBwIC0gMzA2Nzc1Nzg4ODU1MzM2NjczNC5tcDQ']
+    # download_obj = download_video(links)
+    # download_obj.start_download()
