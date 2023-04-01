@@ -1,13 +1,8 @@
 
 # required packages
-from driver import driver_class
+import driver_ as driver
 from time import sleep
 from selenium.webdriver.common.by import By
-import requests
-import files
-import os
-
-
 
 
 class video_download_link:
@@ -24,7 +19,7 @@ class video_download_link:
         
 
     def load_site(self):
-        driver_obj  = driver_class()
+        driver_obj  = driver.driver_class()
         Driver = driver_obj.load_driver()
         # navigatet to the instagram reels downloder website
         Driver.get(self.site_url)
@@ -72,11 +67,12 @@ class video_download_link:
         self.start_download()
         sleep(20)
         print('driver ready to quit')
-        sleep(10)
+        sleep(30)
         self.Driver.quit()
         print('driver quit succeessfully')
-        print(self.links)
+        print('video download complete')
         return self.links
+
 
 
 if __name__ == '__main__':

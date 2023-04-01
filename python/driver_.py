@@ -5,20 +5,19 @@ import files
 
 class driver_class:
 
-    chrome_options = None
-    def __init__(self):
-        self.Driver = self.load_driver()
+    chrome_options = Options()
 
+    def __init__(self):
+        pass
 
     def load_driver(self): 
-        options = self.add_options()
+        self.add_options()
         driver_path = files.get_driver_path()
-        Driver = webdriver.Chrome(executable_path=driver_path , options= options)
+        Driver = webdriver.Chrome(executable_path=driver_path , options=self.chrome_options)
         return Driver
 
 
     def add_options(self):
-        chrome_options = Options()
         self.change_download_loc()
         return True
 
