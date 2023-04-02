@@ -19,14 +19,19 @@ class video_download_link:
         self.Driver = self.load_site()
         
 
-    def load_site(self):
+    def load_driver(self):
         driver_obj  = driver.driver_class()
         download_loc = files.get_video_dir()
         driver_obj.change_download_loc(download_dir = download_loc)
         Driver = driver_obj.load_driver()
-        # navigatet to the instagram reels downloder website
-        Driver.get(self.site_url)
         return Driver
+    
+    
+    # loading instagram reels downloder
+    def load_site(self):
+        self.Driver.get(self.site_url)
+        return True
+
 
     def input_url(self):
         # finding input field by x-path
