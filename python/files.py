@@ -17,10 +17,20 @@ def get_driver_dir():
 def get_driver_path():
     return os.path.join(get_driver_dir(),const.DRIVER_NAME)
 
+
 def get_video_dir():
     parent_dir = os.path.dirname(os.getcwd())
     video_dir = os.path.join(parent_dir, const.VIDEO_DIR)
     return video_dir
+
+
+def get_video_files():
+    videos = []
+    files = os.listdir(get_video_dir())
+    for i in files:
+        videos.append(os.path.join(get_video_dir(),i))
+    return videos
+
 
 def get_cookies_dir():
     parent_dir = os.path.dirname(os.getcwd())

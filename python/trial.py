@@ -1,3 +1,3 @@
 import files
 
-print(files.get_cookies_file())
+print(files.get_video_files())
