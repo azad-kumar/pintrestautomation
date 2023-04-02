@@ -30,15 +30,16 @@ class driver_class:
         self.download_dir = download_dir
         self.chrome_options.add_experimental_option('prefs', {'download.default_directory': download_dir})
         return True
-    
-    # function should be called after loading the driver
-    def add_cookies(self,cookies):
-        self.cookies = cookies 
-        for cookie in cookies:
-            self.Driver.add_cookie(cookie)
 
     # function should be called before loading the driver
     def load_cookies(self, cookies_file):
         with open(cookies_file, 'r') as f:
             cookies = json.load(f)
-        return cookies
+        self.cookies = cookies
+        return True
+
+    # function should be called after loading the driver
+    def add_cookies(self):
+        for cookie in self.cookies:
+            self.Driver.add_cookie(cookie)
+
