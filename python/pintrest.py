@@ -11,6 +11,7 @@ class upload_to_pintrest:
     def __init__(self):
         self.Driver = self.load_driver()
 
+
     def load_driver(self):
         self.driver_obj.load_cookies(files.get_cookies_file())
         Driver = self.driver_obj.load_driver()
@@ -19,18 +20,18 @@ class upload_to_pintrest:
 
     def load_pintrest(self):
         self.Driver.get(self.url)
-        print('sleeping for 10 seconds')
         time.sleep(10)
         print('adding cookies')
         self.driver_obj.add_cookies()
         print('cookies added')
         print('refreshing')
         self.Driver.refresh()
-        print('sleeping for 100 seonds')
-        time.sleep(100)
-        print('driver will be closed in 10 seconds')
         time.sleep(10)
+        self.Driver.get(self.url)
+        time.sleep(100)
+        print('driver ready to QUIT')
         self.Driver.quit()
+        print('drvier quit successfully')
     
 
 
