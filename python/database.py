@@ -3,11 +3,11 @@ import constants as const
 
 class database:
 
-    def __init__(self, host, user, password, database):
+    def __init__(self, host, user, password, database_):
         self.host = host
         self.user = user
         self.password = password
-        self.database = database
+        self.database = database_
         self.connection = None
 
 
@@ -22,6 +22,11 @@ class database:
             print("Connected to MySQL database")
         except mysql.connector.Error as e:
             print("Error connecting to MySQL database:", e)
+        
+        if self.connection is None:
+            return False
+        else:
+            return True
 
     def commit_changes(self):
         self.connection.commit()
@@ -70,12 +75,8 @@ class database:
         self.execute_query(query)
     
     def swap_table(self,table_name):
-        query = sql = f"SELECT * FROM {table_name}"
+        query =f"SELECT * FROM {table_name}"
         return self.execute_query(query)
-
-
-    
-    
 
 
     
