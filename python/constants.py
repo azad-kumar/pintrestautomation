@@ -14,3 +14,4 @@ HOST = os.getenv['host']
 USER = os.getenv['user']
 DATABASE = os.getenv['database']
 PASSWORD = os.getenv['password']
+
