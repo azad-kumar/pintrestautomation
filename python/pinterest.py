@@ -1,19 +1,18 @@
-import files
-import driver_
+from . import files
+from . import driverr
 from time import sleep
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 
-class upload_to_pinterest:
+
+class upload_to_pinterest_class:
     url = 'https://in.pinterest.com/idea-pin-builder/'
     cookies = None
     create_new_btn = '/html/body/div[1]/div[1]/div/div[2]/div/div/div/div/div[1]/div/div[3]/div/button'
     file_input_field = '/html/body/div[4]/div/div/div[2]/div/div[3]/div/div[1]/div/input'
     publish_btn = '/html/body/div[1]/div[1]/div/div[2]/div/div/div/div/div/div[1]/div[3]/div[3]/div/button'
     stat_class ='zI7 iyn Hsu'
-    driver_obj = driver_.driver_class()
+    driver_obj = driverr.driver_class()
 
     def __init__(self):
         self.Driver = self.load_driver()
@@ -79,6 +78,6 @@ class upload_to_pinterest:
     
 
 # if __name__ == '__main__':
-#     pin_obj = upload_to_pinterest()
+#     pin_obj = upload_to_pinterest_class()
 #     pin_obj.load_pinterest()
 #     pin_obj.start_upload()

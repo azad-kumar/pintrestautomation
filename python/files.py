@@ -1,5 +1,5 @@
 import os
-import constants as const
+from  . import constants as const
 import shutil
 
 
@@ -30,7 +30,6 @@ def get_video_files():
     for i in files:
         videos.append(os.path.join(get_video_dir(),i))
     return videos
-
 
 def get_cookies_dir():
     parent_dir = os.path.dirname(os.getcwd())
@@ -78,6 +77,6 @@ def clear_directory(directory):
         except Exception as e:
             print(f"Failed to delete {file_path}. Reason: {e}")
     
+def delete_video():
+    clear_directory(get_driver_dir())
 
-if __name__ == '__main__':
-    print(get_driver_dir())

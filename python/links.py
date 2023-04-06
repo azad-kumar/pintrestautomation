@@ -1,7 +1,7 @@
 
 # reused codes
-from database import database as database_class
-import constants as const
+from . database import database as database_class
+from . import constants as const
 
 
 class links:
@@ -18,10 +18,11 @@ class links:
             host = host,
             user = user,
             password = password,
-            database = database,
+            database_ = database,
         )
+        self.db_obj.connect()
         if self.db_obj.connection is None:
-            print('uable to connect to the database with the dependencied')
+            print('unable to connect to the database with the dependencied')
             return False
         else:
             return True
@@ -34,7 +35,8 @@ class links:
             data = self.db_obj.swap_table(const.TABLE_NAME)
             for i in data:
                 self.links.append(i[0])
-        if len(self.links == 0):
+        print(type(self.links))
+        if self.links == []:
             print('link not found')
             return False
         else:
@@ -49,6 +51,10 @@ class links:
             self.db_obj.eraze_table(const.TABLE_NAME)
             print('data erazed successfully')
         return True
+
+    def disconnect(self):
+        self.db_obj.disconnect()
+        print('disconnected from database')
     
 
 

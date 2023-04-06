@@ -10,8 +10,8 @@ COOKIES_FILE = 'cookies.json'
 
 # database dependencies
 TABLE_NAME = 'videolinks' 
-HOST = os.getenv['host']
-USER = os.getenv['user']
-DATABASE = os.getenv['database']
-PASSWORD = os.getenv['password']
+HOST = os.environ['host']
+USER = os.environ['user']
+DATABASE = os.environ['database']
+PASSWORD = os.environ['password']
 

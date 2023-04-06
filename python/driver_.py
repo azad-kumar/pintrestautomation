@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-import files
 import json
+import os
 
 
 class driver_class:
@@ -15,8 +15,9 @@ class driver_class:
 
 
     def load_driver(self): 
-        driver_path = files.get_driver_path()
-        Driver = webdriver.Chrome(executable_path=driver_path , options=self.chrome_options)
+        self.chrome_options.add_argument('--no-sandbox')
+        self.chrome_options.add_argument('--disable-dev-shm-usage')
+        Driver = webdriver.Chrome(options = self.chrome_options)
         self.Driver = Driver
         return Driver
 
@@ -33,13 +34,13 @@ class driver_class:
 
     # function should be called before loading the driver
     def load_cookies(self, cookies_file):
-        with open(cookies_file, 'r') as f:
-            cookies = json.load(f)
-        self.cookies = cookies
+        self.cookies = json.loads(os.getenv('cookies'))
         return True
 
     # function should be called after loading the driver
     def add_cookies(self):
         for cookie in self.cookies:
             self.Driver.add_cookie(cookie)
+
+
 

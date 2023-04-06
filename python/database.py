@@ -1,5 +1,4 @@
 import mysql.connector
-import constants as const
 
 class database:
 
