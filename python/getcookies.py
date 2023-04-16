@@ -3,13 +3,14 @@ import driver_
 import json
 import time
 
-class upload_to_pintrest:
+class get_cookies:
     url = 'https://in.pinterest.com/idea-pin-builder/'
 
     def __init__(self):
         self.Driver = self.load_pintrest()
 
     def load_pintrest(self):
+        print('loading driver please wait until login page appears and then login ')
         driver_obj = driver_.driver_class()
         Driver = driver_obj.load_driver()
         Driver.get(self.url)
@@ -30,8 +31,8 @@ class upload_to_pintrest:
         else:
             self.Driver.quit()
 
-        
 
 if __name__ == '__main__':
-    pin_obj = upload_to_pintrest()
-    pin_obj.login()
+    cookies_obj = get_cookies()
+    cookies_obj.load_pintrest()
+        
